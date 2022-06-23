@@ -1,15 +1,83 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
 <!DOCTYPE html>
-
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>_Layout</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 200px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            padding-top: 16px;
+        }
+
+            .sidebar a {
+                padding: 6px 8px 6px 16px;
+                text-decoration: none;
+                font-size: 20px;
+                color: #818181;
+                display: block;
+            }
+
+                .sidebar a:hover {
+                    color: #f1f1f1;
+                }
+
+        .main {
+            margin-left: 200px; /* Same as the width of the sidenav */
+            padding: 0px 10px;
+        }
+
+        @@media screen and (max-height: 450px) {
+            .sidebar {
+                padding-top: 15px;
+            }
+
+                .sidebar a {
+                    font-size: 18px;
+                }
+        }
+    </style>
 </head>
 <body>
+
+    <div class="sidebar">
+        <a href=""><i class="fa fa-fw fa-home"></i> Home</a>
+        <a asp-controller="Category" asp-action="Index"><i class="fa fa-fw fa-list"></i> Categories</a>
+        <a href=""><i class="fa fa-fw fa-book"></i> Books</a>
+        <a href=""><i class="fa fa-fw fa-pencil"></i> Authors</a>
+        <a href=""><i class="fa fa-fw fa-user"></i> Members</a>
+        <a href=""><i class="fa fa-fw fa-address-card"></i> Employees</a>
+        <a href=""><i class="fa fa-fw fa-arrow-right"></i> Lend Book</a>
+        <a href=""><i class="fa fa-fw fa-arrow-left"></i> Take Back Book</a>
+        <a href=""><i class="fa fa-fw fa-dollar"></i> CashBox</a>
+        <a href=""><i class="fa fa-fw fa-dashboard"></i> Operations</a>
+        <a href=""><i class="fa fa-fw fa-cog"></i> Settings</a>
+        <a href=""><i class="fa fa-fw fa-phone"></i> Help</a>
+        <a href=""><i class="fa fa-fw fa-remove-sign"></i> Exit</a>
+    </div>
+
+    <div class="main">
+        @RenderBody()
+    </div>
+
 </body>
 </html>
+
+
+
