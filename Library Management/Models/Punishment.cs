@@ -9,6 +9,7 @@ namespace Library_Management.Models
         public DateTime EndDate { get; set; }
         public decimal Money { get; set; }
 
-
+        public int MemberId { get; set; }
+        public Member Member { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Library_Management.Models
+﻿using System.Collections.Generic;
+
+namespace Library_Management.Models
 {
     public class Member
     {
@@ -11,5 +13,9 @@
         public string University { get; set; }
         public string Password { get; set; }
         public string Photo { get; set; }
+
+
+        public IEnumerable<Punishment> Punishments{ get; set; }
+        public IEnumerable<Sales> Sales { get; set; }
     }
 }
