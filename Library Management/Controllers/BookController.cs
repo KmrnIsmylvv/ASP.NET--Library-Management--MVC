@@ -63,5 +63,62 @@ namespace Library_Management.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public IActionResult Delete(int id)
+        {
+            Book book = _context.Books.FirstOrDefault(c => c.Id == id);
+            _context.Remove(book);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            Book book = _context.Books.FirstOrDefault(b => b.Id == id);
+
+            List<SelectListItem> categories = (from i in _context.Categories.ToList()
+                                               select new SelectListItem
+                                               {
+                                                   Text = i.Name,
+                                                   Value = i.Id.ToString()
+                                               }).ToList();
+
+            List<SelectListItem> authors = (from i in _context.Authors.ToList()
+                                            select new SelectListItem
+                                            {
+                                                Text = i.FirstName + " " + i.LastName,
+                                                Value = i.Id.ToString()
+                                            }).ToList();
+
+            ViewBag.Author = authors;
+            ViewBag.Category = categories;
+
+            return View(book);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Book book)
+        {
+            Category category = _context.Categories.FirstOrDefault(c => c.Id == book.CategoryId);
+            Author author = _context.Authors.FirstOrDefault(a => a.Id == book.AuthorId);
+
+            Book currentBook = _context.Books.Find(book.Id);
+
+            currentBook.Name = book.Name;
+            currentBook.PageNumber = book.PageNumber;
+            currentBook.PublishDate = book.PublishDate;
+            currentBook.PublishHome = book.PublishHome;
+            currentBook.InStock = book.InStock;
+            currentBook.CategoryId = category.Id;
+            currentBook.AuthorId = author.Id;
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+
+
     }
 }
