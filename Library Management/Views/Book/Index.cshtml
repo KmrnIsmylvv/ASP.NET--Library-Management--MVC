@@ -7,9 +7,16 @@
 <h1>Book List</h1>
 
 
-<div style="margin-bottom:15px;margin-top:15px;">
-    <input type="text" class="form-control" placeholder="Search Book..."/>
-</div> 
+@using (Html.BeginForm("Index", "Book", FormMethod.Get))
+{
+    <div style="margin-bottom:15px;margin-top:15px;">
+        
+        <input type="text" name="bookName" class="form-control" placeholder="Search Book..." /> 
+        <input type="submit" value="Search" class="btn btn-primary"/>
+    </div>
+}
+
+
 
 <p>
     <a class="btn btn-primary" asp-action="Create">Create New</a>

@@ -51,10 +51,10 @@ namespace Library_Management.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Category newCategory)
+        public IActionResult Edit(Category category)
         {
-            Category category = _context.Categories.Find(newCategory.Id);
-            category.Name=newCategory.Name;
+            _context.Update(category);
+
             _context.SaveChanges();
             return RedirectToAction("Index");
         }

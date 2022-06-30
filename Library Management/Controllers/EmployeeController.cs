@@ -40,5 +40,33 @@ namespace Library_Management.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            Employee employee = _context.Employees.FirstOrDefault(e => e.Id == id);
+
+            return View(employee);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Employee employee)
+        {
+            Employee currentEmployee = _context.Employees.FirstOrDefault(e => e.Id == employee.Id);
+
+            currentEmployee.Name = employee.Name;
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            Employee employee = await _context.Employees.FirstOrDefaultAsync(e => e.Id == id);
+
+            _context.Employees.Remove(employee);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -18,14 +18,15 @@ namespace Library_Management.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string bookName)
         {
-            List<Book> books = _context.Books
-                .Include(b => b.Author)
-                .Include(b => b.Category)
-                .ToList();
+            var books = from book in _context.Books select book;
+            if (!string.IsNullOrEmpty(bookName))
+            {
+                books = books.Where(b => b.Name.Contains(bookName));
+            }
 
-            return View(books);
+            return View(books.ToList());
         }
 
         [HttpGet]
@@ -52,13 +53,6 @@ namespace Library_Management.Controllers
         [HttpPost]
         public IActionResult Create(Book book)
         {
-
-            Category category = _context.Categories.FirstOrDefault(c => c.Id == book.CategoryId);
-            Author author = _context.Authors.FirstOrDefault(a => a.Id == book.AuthorId);
-
-            book.Category = category;
-            book.Author = author;
-
             _context.Books.Add(book);
             _context.SaveChanges();
             return RedirectToAction("Index");
@@ -100,9 +94,6 @@ namespace Library_Management.Controllers
         [HttpPost]
         public IActionResult Edit(Book book)
         {
-            Category category = _context.Categories.FirstOrDefault(c => c.Id == book.CategoryId);
-            Author author = _context.Authors.FirstOrDefault(a => a.Id == book.AuthorId);
-
             Book currentBook = _context.Books.Find(book.Id);
 
             currentBook.Name = book.Name;
@@ -110,8 +101,6 @@ namespace Library_Management.Controllers
             currentBook.PublishDate = book.PublishDate;
             currentBook.PublishHome = book.PublishHome;
             currentBook.InStock = book.InStock;
-            currentBook.CategoryId = category.Id;
-            currentBook.AuthorId = author.Id;
 
             _context.SaveChanges();
 
