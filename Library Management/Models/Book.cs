@@ -9,7 +9,7 @@ namespace Library_Management.Models
         public int PublishDate { get; set; }
         public string PublishHome { get; set; }
         public string PageNumber { get; set; }
-        public bool InStock { get; set; }
+        public bool InStock { get; set; } = true;
 
         public IEnumerable<Sales> Sales { get; set; }
 
