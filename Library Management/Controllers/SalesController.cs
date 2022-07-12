@@ -48,10 +48,27 @@ namespace Library_Management.Controllers
         {
             Sales sales = _context.Sales
                 .Include(s => s.Book)
-                .Include(s=>s.Member)
+                .Include(s => s.Member)
                 .FirstOrDefault(s => s.Id == id);
 
             return View(sales);
+        }
+
+        [HttpPost]
+        public IActionResult TakeBack(Sales sales)
+        {
+            Book book = _context.Books.FirstOrDefault(b => b.Id == sales.BookId);
+            book.InStock = true;
+
+            Sales currentSales = _context.Sales.Find(sales.Id);
+            currentSales.GivenTime = sales.GivenTime;
+            currentSales.IsCompleted = true;
+
+            
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
     }
