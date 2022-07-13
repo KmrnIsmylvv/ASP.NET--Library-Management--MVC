@@ -21,6 +21,7 @@ namespace Library_Management.Controllers
             List<Sales> sales = _context.Sales
                 .Include(s => s.Book)
                 .Include(s => s.Member)
+                .Where(s => s.IsCompleted == false)
                 .ToList();
             return View(sales);
         }

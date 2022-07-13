@@ -10,8 +10,9 @@ namespace Library_Management.Models
         public string PublishHome { get; set; }
         public string PageNumber { get; set; }
         public bool InStock { get; set; } = true;
+        public string PhotoUrl { get; set; }
 
-        public IEnumerable<Sales> Sales { get; set; }
+        public IEnumerable<Sales> Sales { get; set; } 
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }
