@@ -11,6 +11,7 @@ namespace Library_Management.DAL
         }
 
         public DbSet<Author> Authors { get; set; }
+        public DbSet<About> Abouts { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<CashBox> CashBoxes { get; set; }
         public DbSet<Category> Categories { get; set; }

@@ -1,5 +1,6 @@
 ﻿using Library_Management.DAL;
 using Library_Management.Models;
+using Library_Management.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Library_Management.Controllers
 {
-    public class HomeController : Controller 
+    public class HomeController : Controller
     {
         private readonly Context _context;
 
@@ -22,8 +23,15 @@ namespace Library_Management.Controllers
         public ActionResult Index()
         {
             List<Book> books = _context.Books.ToList();
+            About about = _context.Abouts.FirstOrDefault();
 
-            return View(books);
-        }
+            HomeVM homeVm = new HomeVM
+            {
+                Books = books,
+                About = about
+            };
+
+            return View(homeVm);
     }
+}
 }
