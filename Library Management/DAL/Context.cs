@@ -15,6 +15,7 @@ namespace Library_Management.DAL
         public DbSet<Book> Books { get; set; }
         public DbSet<CashBox> CashBoxes { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Member> Members { get; set; }
         public DbSet<Punishment> Punishments { get; set; }

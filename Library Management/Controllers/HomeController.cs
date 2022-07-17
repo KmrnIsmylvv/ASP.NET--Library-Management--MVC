@@ -32,6 +32,16 @@ namespace Library_Management.Controllers
             };
 
             return View(homeVm);
+        }
+
+        [HttpPost]
+        public ActionResult SendMessage(Contact contact)
+        {
+            _context.Contacts.Add(contact);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
     }
-}
 }
