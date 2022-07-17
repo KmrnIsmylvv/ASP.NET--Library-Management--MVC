@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Library_Management.DAL;
+using Library_Management.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -10,9 +12,18 @@ namespace Library_Management.Controllers
 {
     public class HomeController : Controller 
     {
+        private readonly Context _context;
+
+        public HomeController(Context context)
+        {
+            _context = context;
+        }
+
         public ActionResult Index()
         {
-            return View();
+            List<Book> books = _context.Books.ToList();
+
+            return View(books);
         }
     }
 }

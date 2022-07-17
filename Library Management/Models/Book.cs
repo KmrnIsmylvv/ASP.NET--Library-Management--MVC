@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Library_Management.Models
 {
@@ -11,6 +13,9 @@ namespace Library_Management.Models
         public string PageNumber { get; set; }
         public bool InStock { get; set; } = true;
         public string PhotoUrl { get; set; }
+
+        [NotMapped]
+        public IFormFile Photo { get; set; }
 
         public IEnumerable<Sales> Sales { get; set; } 
 

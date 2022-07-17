@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<Book>
+
+@{
     Layout = null;
 }
 
@@ -37,7 +39,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item mx-0 mx-lg-1">
-                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Portfolio</a>
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#books">Books</a>
                     </li>
                     <li class="nav-item mx-0 mx-lg-1">
                         <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a>
@@ -74,11 +76,11 @@
     </header>
 
     <!-- Portfolio Section -->
-    <section class="page-section portfolio" id="portfolio">
+    <section class="page-section portfolio" id="books">
         <div class="container">
 
             <!-- Portfolio Section Heading -->
-            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Portfolio</h2>
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Our Books</h2>
 
             <!-- Icon Divider -->
             <div class="divider-custom">
@@ -93,20 +95,23 @@
             <div class="row">
 
                 <!-- Portfolio Item 1 -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
-                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white">
-                                <i class="fas fa-plus fa-3x"></i>
+                @foreach (Book book in Model)
+                {
+                    <div  class="col-md-6 col-lg-4">
+                        <div style="width: 200px;" class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white">
+                                    <i class="fas fa-plus fa-3x"></i>
+                                </div>
                             </div>
+                            <img class="img-fluid" src="~/homeAssets/img/@book.PhotoUrl" alt="@book.Name">
                         </div>
-                        <img class="img-fluid" src="~/homeAssets/img/portfolio/cabin.png" alt="">
                     </div>
-                </div>
+                }
+
 
             </div>
             <!-- /.row -->
-
         </div>
     </section>
 
@@ -241,7 +246,7 @@
 
                 <!-- Footer About Text -->
                 <div class="col-lg-4">
-                    <h4 class="text-uppercase mb-4">About Freelancer</h4>
+                    <h4 class="text-uppercase mb-4">About Library</h4>
                     <p class="lead mb-0">
                         Freelance is a free to use, MIT licensed Bootstrap theme created by
                         <a href="http://startbootstrap.com">Start Bootstrap</a>.

@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\assets\" />
+    <Folder Include="wwwroot\homeAssets\NewFolder\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +23,13 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="PagedList" Version="1.17.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\homeAssets\img\library.png">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
